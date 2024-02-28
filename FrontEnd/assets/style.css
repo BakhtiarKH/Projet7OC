@@ -223,6 +223,14 @@ margin: auto;
 	margin: 2em 0 1em 0;
 }
 
+.loginErreur {
+	display: flex;
+	justify-content: center;
+	color: red;
+	font-family: 'Syne';
+	font-size: 15px;
+}
+
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;

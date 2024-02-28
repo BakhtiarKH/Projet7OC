@@ -25,14 +25,15 @@
     <main>
         <section id="login">
             <h2>Log in</h2>
-            <form action="#" method="post">
+            <form>
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email">
                 <label for="mdp">Mot de passe</label>
                 <input type="password" id="mdp">
-                <input type="submit" value="Se connecter">
-            </form>
+                <input type="submit" value="Se connecter" id="envoyer">
+            </form>            
         </section>
+        <p class="loginErreur"></p>
     </main>
     <footer>
         <nav>
@@ -42,4 +43,5 @@
         </nav>
     </footer>
 </body>
+<script src="./assets/login.js"></script>
 </html>
