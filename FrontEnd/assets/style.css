@@ -98,6 +98,19 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+li a {
+	text-decoration: none;
+	padding: 0 10px;
+	font-size: 1.2em;
+	font: inherit;
+	color: black;
+}
+
+li a:hover {
+	color: #B1663C;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;

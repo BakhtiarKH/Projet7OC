@@ -5,7 +5,7 @@ const filterAppartements = document.getElementById('filterAppartements')
 const filterHotels = document.getElementById('filterHotels')
 const apiUrl = 'http://localhost:5678/api/'
 
-
+// Fonction pour demander la liste des objets via l'API
 function getData(callback) {
   fetch(apiUrl + 'works')
     .then(response => response.json())
@@ -13,6 +13,7 @@ function getData(callback) {
     .catch(error => console.error(error))
 }
 
+// Utilisation de la fonction précédante et affichage de toutes les donnés au chargement de la page
 getData(data => {
   const works = data
 
@@ -22,6 +23,7 @@ getData(data => {
   }
 })
 
+// Les 4 suivants remplacent l'affichage des éléments en fonction de la catégorie sélectionnée
 filterTous.addEventListener('click', function() {
   getData(data => {
     const works = data
@@ -65,3 +67,17 @@ filterHotels.addEventListener('click', function() {
     }
   })
 })
+
+// Vérification de la disponibilité du token et réaction en concéquance
+const token = localStorage.getItem("authToken");
+
+if (token) {
+  document.querySelector('#portfolio h2').innerHTML += (' ->modale ici<-');
+}
+
+else {
+  console.error('Token introuvable');
+}
+
+// Efface le token afin de permettre de recommencer le test du login
+localStorage.removeItem("authToken");
