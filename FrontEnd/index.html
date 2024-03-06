@@ -17,7 +17,7 @@
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li><a href="./login.html">Login</a></li>
+			<li><a href="./login.html" class="log-button">Login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -35,7 +35,19 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div id="modal" class="modal">
+			<div class="modal-content">
+				<img src="./assets/icons/close.svg" alt="Fermer" class="fermer-modal">
+				<h3 class="modal-title">Galerie photo</h3>
+				<div class="modal-gallery">
+				
+				</div>
+					<button type="button" class="ajouter-boutton">Ajouter une photo</button>
+				</div>
+			</div>
+		<div class="portfolio-title">
+		<h2>Mes Projets</h2><p class="edit-button"><img src="./assets/icons/edit.svg" alt="Edit">modifier</p>
+		</div>
 		<section class="filters">
 			<div class="filter-button" id="filterTous">Tous</div>
 			<div class="filter-button"  id="filterObjets">Objets</div>

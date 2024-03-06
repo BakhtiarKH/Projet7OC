@@ -1,4 +1,5 @@
 // Déclaration des constantes
+const modifier = document.querySelector('.portfolio-title')
 const filterTous = document.getElementById('filterTous')
 const filterObjets = document.getElementById('filterObjets')
 const filterAppartements = document.getElementById('filterAppartements')
@@ -72,8 +73,64 @@ filterHotels.addEventListener('click', function() {
 const token = localStorage.getItem("authToken");
 
 if (token) {
-  document.querySelector('#portfolio h2').innerHTML += (' ->modale ici<-');
-}
+
+  document.querySelector('.log-button').innerHTML = 'Logout'
+  document.querySelector('.log-button').addEventListener('click', function() {
+    localStorage.removeItem("authToken");
+    window.location.reload();
+  })
+
+  document.querySelector('.edit-button').style.display = 'flex';
+  
+    // Bouton d'édition
+  modifier.addEventListener('click', function() {
+    document.querySelector('.modal').style.display = 'flex';
+  })
+
+
+  // Bouton de fermeture de la modal
+  document.querySelector('.fermer-modal').addEventListener('click', function() {
+    document.querySelector('.modal').style.display = 'none';
+  })
+
+  // Chargement de la galerie dans la modal
+  getData(data => {
+    const works = data
+
+    document.querySelector('.modal-gallery').innerHTML = ''
+    for (let selecteur = 0; selecteur < works.length; selecteur++) {
+    document.querySelector('.modal-gallery').innerHTML += `
+      <div class="modal-object" id="n${works[selecteur].id}">
+        <img src="./assets/icons/trash.svg" class="trash-icon" onclick="supprimer(${works[selecteur].id})">
+        <img src="${works[selecteur].imageUrl}" alt="${works[selecteur].title}">
+      </div>
+    `;
+  }
+  })
+
+
+  // Fonction de suppression des éléments via la modal
+  function supprimer(id) {
+
+  // Envoyer la requête à l'API
+    fetch("http://localhost:5678/api/works/" + id, {
+      method: 'DELETE',
+      headers: {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcwOTY3ODk0NiwiZXhwIjoxNzA5NzY1MzQ2fQ.xu8Kvvd-TVqmJDZ8bFzp07ifV6su7PUVZKN4R2pL3ho",
+      },
+    })
+      .then(response => {
+        if (response.status === 204) {
+          // Supprimer l'élément du DOM
+          const objet = document.querySelector('#n' + id);
+          objet.parentNode.removeChild(objet);
+        } else {
+          // Une erreur est survenue
+          console.error(`Erreur lors de la suppression de l'objet ${works[id].title} : ${response.status}`);
+        }
+      });
+  }
+  }
 
 else {
   console.error('Token introuvable');
