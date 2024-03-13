@@ -299,7 +299,6 @@ footer nav ul {
 	top: 5vh;
 	width: 430px;
 	height: 688px;
-	margin: 0 auto;
 	background-color: #fff;
 	border-radius: 5px;
 	padding: 0 100px 0 100px;
@@ -322,6 +321,24 @@ h3.modal-title {
 	min-height: 380px;
 	padding-bottom: 40px;
 	border-bottom: 1px solid black;
+}
+
+.modal-content .input-bar {
+	width: 420px;
+	height: 51px;
+	padding: 0;
+	margin-bottom: 30px;
+	border: 0;
+	box-shadow: 0px 4px 14px 0px #00000017;
+}
+
+.modal-content label {
+	font-family: Work Sans;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0em;
+	text-align: left;
 }
 
 .modal-object {
@@ -351,16 +368,30 @@ h3.modal-title {
 }
 
 .fermer-modal {
-	position: relative;
-	top: 30px;
-	left: 476px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 	cursor: pointer;
 	color: #000;
 	height: 24px;
 	width: 24px;
 }
 
-.ajouter-boutton {
+.modal-add {
+	display: none;
+}
+
+.retour {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	cursor: pointer;
+	color: #000;
+	height: 24px;
+	width: 24px;
+}
+
+.ajouter-button {
 	display: flex;
 	justify-content: center;
 	width: 237px;
@@ -374,4 +405,67 @@ h3.modal-title {
     margin: 2em auto;
     text-align: center;
     border-radius: 60px;
+	border: none;
+	cursor: pointer;
+}
+
+.ajouter-objet {
+	display: flex;
+	justify-content: center;
+	width: 237px;
+	height: 36px;
+	font-family: 'Syne';
+    font-weight: 700;
+	font-size: 14px;
+	line-height: 30px;
+    color: white;
+    background-color: #CBD6DC;
+    margin: 2em auto;
+    text-align: center;
+    border-radius: 60px;
+	border: none;
+	cursor: pointer;
+}
+
+.plus-photo {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	width: 420px;
+	height: 169px;
+	border-radius: 3px;
+	background-color: #E8F1F6;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.plus-photo img {
+	max-width: 76px;
+	max-height: 76px;
+	margin: 0 auto;
+}
+
+.plus-photo .file-input {
+	width: 0;
+	height: 0;
+	opacity: 0;
+}
+
+.plus-photo .ajouter-photo {
+	width: 173px;
+	height: 36px;
+	border-radius: 50px;
+	margin: 0 auto;
+	background-color: #CBD6DC;
+	border: none;
+	cursor: pointer;
+}
+
+.plus-photo p {
+	font-family: Work Sans;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 12px;
+	letter-spacing: 0em;
+	text-align: center;
 }

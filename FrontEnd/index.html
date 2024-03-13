@@ -17,7 +17,7 @@
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li><a href="./login.html" class="log-button">Login</a></li>
+			<li class="log-button"><a href="./login.html">Login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -37,14 +37,41 @@
 	<section id="portfolio">
 		<div id="modal" class="modal">
 			<div class="modal-content">
-				<img src="./assets/icons/close.svg" alt="Fermer" class="fermer-modal">
+				<div class="modal-delete">
+					<img src="./assets/icons/close.svg" alt="Fermer" class="fermer-modal">
 				<h3 class="modal-title">Galerie photo</h3>
 				<div class="modal-gallery">
 				
 				</div>
-					<button type="button" class="ajouter-boutton">Ajouter une photo</button>
+					<button type="button" class="ajouter-button">Ajouter une photo</button>
+				</div>
+				<div class="modal-add">
+					<img src="./assets/icons/back.svg" alt="Retour" class="retour">
+					<img src="./assets/icons/close.svg" alt="Fermer" class="fermer-modal">
+					<h3 class="modal-title">Ajout photo</h3>
+					<div class="modal-add-form">
+						<form>
+							<div class="plus-photo">
+								<img src="./assets/icons/image.svg" alt="Image">
+								<input type="file" name="photo-url" id="file-input" class="file-input" required>
+								<button type="button" class="ajouter-photo">+Ajouter photo</button>
+								<p class="info-photo">jpg, png : 4mo max</p>
+							</div>
+							<label for="titre">Titre</label>
+							<input type="text" name="titre" id="titre" class="input-bar" required>
+							<label for="categorie">Catégorie</label>
+							<select name="categorie" id="categorie" class="input-bar" required>
+								<option value="" disabled selected></option>
+								<option value="1">Objets</option>
+								<option value="2">Appartements</option>
+								<option value="3">Hôtels & restaurants</option>
+							</select>
+						</form>
+					</div>
+						<button type="submit" class="ajouter-objet" id="form-submit">Valider</button>
 				</div>
 			</div>
+		</div>
 		<div class="portfolio-title">
 		<h2>Mes Projets</h2><p class="edit-button"><img src="./assets/icons/edit.svg" alt="Edit">modifier</p>
 		</div>

@@ -20,7 +20,7 @@ getData(data => {
 
   document.querySelector('.gallery').innerHTML = ''
   for (let selecteur = 0; selecteur < works.length; selecteur++) {
-    document.querySelector('.gallery').innerHTML += '<figure><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
+    document.querySelector('.gallery').innerHTML += '<figure class="n' + works[selecteur].id + '"><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
   }
 })
 
@@ -31,7 +31,7 @@ filterTous.addEventListener('click', function() {
 
     document.querySelector('.gallery').innerHTML = ''
     for (let selecteur = 0; selecteur < works.length; selecteur++) {
-      document.querySelector('.gallery').innerHTML += '<figure><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
+      document.querySelector('.gallery').innerHTML += '<figure  class="n' + works[selecteur].id + '"><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
     }
   })
 })
@@ -42,18 +42,19 @@ filterObjets.addEventListener('click', function() {
     
     document.querySelector('.gallery').innerHTML = ''
     for (let selecteur = 0; selecteur < works.length; selecteur++) {
-      document.querySelector('.gallery').innerHTML += '<figure><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
+      document.querySelector('.gallery').innerHTML += '<figure class="n' + works[selecteur].id + '"><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
     }
   })
 })
 
 filterAppartements.addEventListener('click', function() {
   getData(data => {
+    
     const works = data.filter(work => work.categoryId === 2)
     
     document.querySelector('.gallery').innerHTML = ''
     for (let selecteur = 0; selecteur < works.length; selecteur++) {
-      document.querySelector('.gallery').innerHTML += '<figure><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
+      document.querySelector('.gallery').innerHTML += '<figure  class="n' + works[selecteur].id + '"><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
     }
   })
 })
@@ -64,7 +65,7 @@ filterHotels.addEventListener('click', function() {
     
     document.querySelector('.gallery').innerHTML = ''
     for (let selecteur = 0; selecteur < works.length; selecteur++) {
-      document.querySelector('.gallery').innerHTML += '<figure><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
+      document.querySelector('.gallery').innerHTML += '<figure class="n' + works[selecteur].id + '"><img src="' + works[selecteur].imageUrl + '" alt="' + works[selecteur].title + '"><figcaption>' + works[selecteur].title + '</figcaption>';
     }
   })
 })
@@ -74,10 +75,9 @@ const token = localStorage.getItem("authToken");
 
 if (token) {
 
-  document.querySelector('.log-button').innerHTML = 'Logout'
+  document.querySelector('.log-button').innerHTML = '<a href="./index.html">Logout</a>'
   document.querySelector('.log-button').addEventListener('click', function() {
     localStorage.removeItem("authToken");
-    window.location.reload();
   })
 
   document.querySelector('.edit-button').style.display = 'flex';
@@ -89,8 +89,25 @@ if (token) {
 
 
   // Bouton de fermeture de la modal
-  document.querySelector('.fermer-modal').addEventListener('click', function() {
-    document.querySelector('.modal').style.display = 'none';
+  const fermerModal = document.getElementsByClassName('fermer-modal');
+
+  for (let i = 0; i < fermerModal.length; i++) {
+    fermerModal[i].addEventListener('click', function() {
+      document.querySelector('.modal').style.display = 'none';
+    });
+  }
+
+  // Navigation entre les différentes pages de la modal
+  document.querySelector('.ajouter-button').addEventListener('click', function() {
+    document.querySelector('.modal-delete').style.display = 'none';
+    document.querySelector('.modal-add').style.display = 'block';
+  })
+  document.querySelector('.plus-photo').addEventListener('click', () => {
+    document.querySelector('.file-input').click();
+    })
+  document.querySelector('.retour').addEventListener('click', function() {
+    document.querySelector('.modal-add').style.display = 'none';
+    document.querySelector('.modal-delete').style.display = 'block';
   })
 
   // Chargement de la galerie dans la modal
@@ -116,13 +133,15 @@ if (token) {
     fetch("http://localhost:5678/api/works/" + id, {
       method: 'DELETE',
       headers: {
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcwOTY3ODk0NiwiZXhwIjoxNzA5NzY1MzQ2fQ.xu8Kvvd-TVqmJDZ8bFzp07ifV6su7PUVZKN4R2pL3ho",
+        "Authorization": "Bearer " + token,
       },
     })
       .then(response => {
         if (response.status === 204) {
           // Supprimer l'élément du DOM
-          const objet = document.querySelector('#n' + id);
+          var objet = document.querySelector('#n' + id);
+          objet.parentNode.removeChild(objet);
+          var objet = document.querySelector('.n' + id);
           objet.parentNode.removeChild(objet);
         } else {
           // Une erreur est survenue
@@ -130,11 +149,64 @@ if (token) {
         }
       });
   }
+
+  function addNewObject(image, title, category) {
+    // Conversion des données en format multipart/form-data
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('title', title);
+    formData.append('category', category);
+  
+    fetch("http://localhost:5678/api/works", {
+      method: 'POST',
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      body: formData
+    })
+      .then(response => {
+        if (response.status === 201) {
+          return response.json();
+        } else {
+          console.error("Erreur lors de la création de l'objet", response.status);
+        }
+      })
+      .catch(error => {
+        console.error("Erreur lors de la création de l'objet", error);
+      });
   }
+  
+  // Vérification du remplissage des champs en temps réel
+  document.querySelector('#titre').addEventListener('change', function() {
+    valueCheck();
+  });
+  document.querySelector('#file-input').addEventListener('change', function() {
+    valueCheck();
+  });
+  document.querySelector('#categorie').addEventListener('change', function() {
+    valueCheck();
+  });
+  
+  function valueCheck() {
+    let title = document.querySelector('#titre').value;
+    let image = document.querySelector('#file-input').files[0];
+    let category = document.querySelector('#categorie').value;
+  
+    if (image) {
+      document.querySelector('.info-photo').innerHTML = 'Cliquez pour modifier la sélection';
+      document.querySelector('.ajouter-photo').innerHTML = image.name;
+      document.querySelector('.ajouter-photo').style.backgroundColor = '#1D6154';
+    }
 
-else {
-  console.error('Token introuvable');
+    // Si tout les champs sont remplis, alors le bouton de validation devient actif et passe au vert
+    if (title && image && category) {
+      document.querySelector('.ajouter-objet').style.backgroundColor = '#1D6154';
+
+      document.querySelector('#form-submit').addEventListener('click', function() {
+        addNewObject(image, title, category);
+        window.location.href = "./index.html";
+      });
+    }
+  }
+  
 }
-
-// Efface le token afin de permettre de recommencer le test du login
-localStorage.removeItem("authToken");
