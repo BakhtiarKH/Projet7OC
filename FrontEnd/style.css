@@ -1,0 +1,490 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/** end reset css**/
+body {
+	max-width: 1140px;
+	margin:auto;
+	font-family: 'Work Sans' ;
+	font-size: 14px;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 0
+}
+section {
+	margin: 50px 0
+}
+
+h1{
+	display: flex;
+	flex-direction: column;
+	font-family: 'Syne';
+	font-size: 22px;
+	font-weight: 800;
+	color: #B1663C
+}
+
+h1 > span {
+	font-family: 'Work Sans';
+	font-size:10px;
+	letter-spacing: 0.1em;
+;
+}
+
+h2{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: #1D6154
+}
+nav ul {
+	display: flex;
+	align-items: center;
+	list-style-type: none;
+
+}
+nav li {
+	padding: 0 10px;
+	font-size: 1.2em;
+}
+
+li:hover {
+	color: #B1663C;
+}
+
+li a {
+	text-decoration: none;
+	padding: 0 10px;
+	font-size: 1.2em;
+	font: inherit;
+	color: black;
+}
+
+li a:hover {
+	color: #B1663C;
+}
+
+#introduction {
+	display: flex;
+	align-items: center;
+}
+#introduction figure {
+	flex: 1
+}
+#introduction img {
+	display: block;
+	margin: auto;
+	width: 80%;
+}
+
+#introduction article {
+	flex: 1
+}
+#introduction h2 {
+	margin-bottom: 1em;
+}
+
+#introduction p {
+	margin-bottom: 0.5em;
+}
+#portfolio h2 {
+	text-align: center;
+	margin-bottom: 1em;
+	margin-right: 20px;
+}
+
+.portfolio-title {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.edit-button {
+	display: none;
+	height: 16px;
+	width: auto;
+	font-size: 16px;
+	position: relative;
+	top: 5px;
+}
+
+.edit-button:hover {
+	cursor: pointer;
+}
+
+.filters {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
+.filters .filter-button {
+	margin: 0;
+	padding: 9px 20px;
+	max-height: 37px;
+	font-size: 16px;
+	color: #1D6154;
+	font-family: Syne;
+	font-weight: 700;
+	border-radius: 60px;
+	background-color: white;
+	border: 2px solid #1D6154;
+}
+
+.filters .filter-button:hover {
+	background-color: #1D6154;
+	color: white;
+	cursor: pointer;
+}
+
+.gallery {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+}
+
+.gallery img {
+	width: 100%;
+
+}
+#contact {
+	width: 50%;
+margin: auto;
+}
+#contact > * {
+	text-align: center;
+
+}
+#contact h2{
+	margin-bottom: 20px;
+}
+#contact form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#contact input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#contact label {
+	margin: 2em 0 1em 0;
+}
+#contact textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+#login {
+	width: 50%;
+margin: auto;
+}
+#login > * {
+	text-align: center;
+
+}
+#login h2{
+	margin-bottom: 20px;
+}
+#login form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#login input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#login label {
+	margin: 2em 0 1em 0;
+}
+
+.loginErreur {
+	display: flex;
+	justify-content: center;
+	color: red;
+	font-family: 'Syne';
+	font-size: 15px;
+}
+
+input[type="submit"]{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 2em auto ;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px ;
+}
+
+footer nav ul {
+	display: flex;
+	justify-content: flex-end;
+	margin: 2em
+}
+
+.login-footer {
+	position: relative;
+	bottom: 0;
+	right: 0;
+}
+
+.modal {
+	display: none;
+	position: fixed;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	top: 5vh;
+	width: 430px;
+	height: 688px;
+	background-color: #fff;
+	border-radius: 5px;
+	padding: 0 100px 0 100px;
+}
+
+h3.modal-title {
+	margin: 30px 0 60px 0;
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	text-align: center;
+	color: #000;
+}
+
+.modal-gallery {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	justify-content: center;
+	height: auto;
+	min-height: 380px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid black;
+}
+
+.modal-content .input-bar {
+	width: 420px;
+	height: 51px;
+	padding: 0;
+	margin-bottom: 30px;
+	border: 0;
+	box-shadow: 0px 4px 14px 0px #00000017;
+}
+
+.modal-content label {
+	font-family: Work Sans;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0em;
+	text-align: left;
+}
+
+.modal-object {
+	width: 77px;
+	height: 103px;
+}
+
+.trash-icon {
+	max-width: 11px;
+	max-height: 11px;
+	padding: 4px;
+	background-color: black;
+	border-radius: 2px;
+	position: relative;
+	top: 10px;
+	left: 52px;
+}
+
+.trash-icon:hover {
+	cursor: pointer;
+}
+
+.modal-gallery img {
+	width: 100%;
+	height: 100%;
+	margin-top: -17px;
+}
+
+.fermer-modal {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	color: #000;
+	height: 24px;
+	width: 24px;
+}
+
+.modal-add {
+	display: none;
+}
+
+.modal-add-form {
+	border-bottom: 1px solid black;
+	padding-bottom: 30px;
+}
+
+.retour {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	cursor: pointer;
+	color: #000;
+	height: 24px;
+	width: 24px;
+}
+
+.ajouter-button {
+	display: flex;
+	justify-content: center;
+	width: 237px;
+	height: 36px;
+	font-family: 'Syne';
+    font-weight: 700;
+	font-size: 14px;
+	line-height: 30px;
+    color: white;
+    background-color: #1D6154;
+    margin: 2em auto;
+    text-align: center;
+    border-radius: 60px;
+	border: none;
+	cursor: pointer;
+}
+
+.ajouter-objet {
+	display: flex;
+	justify-content: center;
+	width: 237px;
+	height: 36px;
+	font-family: 'Syne';
+    font-weight: 700;
+	font-size: 14px;
+	line-height: 30px;
+    color: white;
+    background-color: #CBD6DC;
+    margin: 2em auto;
+    text-align: center;
+    border-radius: 60px;
+	border: none;
+	cursor: pointer;
+}
+
+.plus-photo {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	width: 420px;
+	height: 169px;
+	border-radius: 3px;
+	background-color: #E8F1F6;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.aperçu {
+	width: 0;
+	height: 0;
+	opacity: 0;
+	margin: 0;
+	padding: 0;
+}
+
+.plus-photo .icone-img {
+	max-width: 76px;
+	max-height: 76px;
+	margin: 0 auto;
+}
+
+.plus-photo .file-input {
+	width: 0;
+	height: 0;
+	opacity: 0;
+}
+
+.plus-photo .ajouter-photo {
+	width: 173px;
+	height: 36px;
+	border-radius: 50px;
+	margin: 0 auto;
+	background-color: #CBD6DC;
+	border: none;
+	cursor: pointer;
+}
+
+.plus-photo p {
+	font-family: Work Sans;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 12px;
+	letter-spacing: 0em;
+	text-align: center;
+}
